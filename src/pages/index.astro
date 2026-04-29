@@ -1,0 +1,1029 @@
+---
+// src/pages/index.astro
+const TURNOS_URL = "https://devhub-turnos.vercel.app/reservar/santos-detailing";
+const IG_URL = "https://www.instagram.com/santos.detailing_cat/";
+const WA_NUM = "5493834222905";
+
+const servicios = [
+  {
+    id: "lavado-basico",
+    nombre: "Lavado Básico",
+    precio: "$8.000",
+    duracion: "1 hora",
+    descripcion: "Limpieza exterior e interior completa a mano.",
+    items: [
+      "Lavado exterior a mano",
+      "Aspirado interior completo",
+      "Limpieza de vidrios",
+      "Limpieza de tablero",
+      "Aromatización",
+    ],
+    destacado: false,
+  },
+  {
+    id: "detailing-pro",
+    nombre: "Detailing Pro",
+    precio: "$25.000",
+    duracion: "3-4 horas",
+    descripcion: "Restauración profunda de pintura y habitáculo.",
+    items: [
+      "Todo lo del Básico",
+      "Pulido de pintura",
+      "Descontaminación ferrosa",
+      "Limpieza de llantas y neumáticos",
+      "Tratamiento de plásticos interiores",
+      "Encerado protector",
+    ],
+    destacado: true,
+  },
+  {
+    id: "ceramica-premium",
+    nombre: "Cerámica Premium",
+    precio: "$55.000",
+    duracion: "6-8 horas",
+    descripcion: "Protección cerámica profesional de larga duración.",
+    items: [
+      "Todo lo del Pro",
+      "Corrección de pintura",
+      "Aplicación de coating cerámico",
+      "Protección de vidrios",
+      "Ozono interior",
+      "Garantía 12 meses",
+    ],
+    destacado: false,
+  },
+];
+
+const productos = [
+  {
+    nombre: "Cherry Quick",
+    desc: "Quick detailer con aroma a cereza. Brillo instantáneo entre lavados.",
+    img: "https://static.toxicshine.com.ar/prod/2024/10/Cherry-Quick-768x1149.jpg",
+  },
+  {
+    nombre: "Illusion Wax",
+    desc: "Cera de carnauba premium. Protección y brillo de larga duración.",
+    img: "https://static.toxicshine.com.ar/prod/2024/10/Ilussion-Wax-768x1149.jpg",
+  },
+  {
+    nombre: "Shampoo Banana",
+    desc: "Shampoo pH neutro con aroma a banana. Limpieza suave y segura.",
+    img: "https://static.toxicshine.com.ar/prod/2025/02/Shampoo-Banana-768x1149.jpg",
+  },
+  {
+    nombre: "Iron Warning",
+    desc: "Descontaminante ferroso. Elimina el polvo de freno eficazmente.",
+    img: "https://static.toxicshine.com.ar/prod/2025/02/Iron-Warning-768x1149.jpg",
+  },
+  {
+    nombre: "Hyper Black",
+    desc: "Restaurador de plásticos negros. Deja un acabado profundo y duradero.",
+    img: "https://static.toxicshine.com.ar/prod/2025/02/Hyper-Black-768x1149.jpg",
+  },
+  {
+    nombre: "Seal It All",
+    desc: "Sellador universal de pintura. Protección máxima con alto brillo.",
+    img: "https://static.toxicshine.com.ar/prod/2025/02/Seal-It-All-768x1149.jpg",
+  },
+];
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Santos Detailing Catamarca — Servicio profesional de detailing y cerámica automotriz. Reservá tu turno online." />
+  <meta property="og:title" content="Santos Detailing — Catamarca" />
+  <meta property="og:description" content="Protección cerámica y detailing profesional en Catamarca." />
+  <title>Santos Detailing — Catamarca</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-icon">S</div>
+      <div class="logo-text">
+        <span class="logo-main">SANTOS</span>
+        <span class="logo-sub">DETAILING</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#productos">Productos</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+      <a href={TURNOS_URL} class="nav-cta" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Reservar turno
+      </a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#servicios" class="mobile-link">Servicios</a>
+  <a href="#productos" class="mobile-link">Productos</a>
+  <a href="#proceso" class="mobile-link">Proceso</a>
+  <a href="#galeria" class="mobile-link">Galería</a>
+  <a href="#contacto" class="mobile-link">Contacto</a>
+  <a href={TURNOS_URL} class="mobile-cta" target="_blank">Reservar turno</a>
+</div>
+
+<!-- ══ HERO ═════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-lines">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span>Catamarca, Argentina</span>
+      <span class="eyebrow-sep">·</span>
+      <span>Detailing Profesional</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="title-line">SANTOS</span>
+      <span class="title-line title-outline">DETAILING</span>
+    </h1>
+
+    <p class="hero-desc">
+      Cerámica profesional, pulido de pintura y detailing completo.<br/>
+      Tu auto merece el mejor tratamiento.
+    </p>
+
+    <div class="hero-actions">
+      <a href={TURNOS_URL} class="btn-primary" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        Reservar turno ahora
+      </a>
+      <a href="#servicios" class="btn-outline">Ver servicios</a>
+    </div>
+
+    <div class="hero-badges">
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Productos premium
+      </div>
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Garantía en cada trabajo
+      </div>
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        Turnos online 24/7
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-indicator">
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ══ STATS ════════════════════════════════════════════════ -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-num">500<span class="stat-plus">+</span></span>
+        <span class="stat-label">Autos detallados</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">5<span class="stat-star">★</span></span>
+        <span class="stat-label">Calificación promedio</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">3<span class="stat-plus">+</span></span>
+        <span class="stat-label">Años de experiencia</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <span class="stat-num">100<span class="stat-pct">%</span></span>
+        <span class="stat-label">Satisfacción garantizada</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICIOS ════════════════════════════════════════════ -->
+<section id="servicios" class="servicios">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">
+        <span class="tag-line"></span>
+        Nuestros servicios
+        <span class="tag-line"></span>
+      </div>
+      <h2 class="section-title">ELEGÍ TU <span class="title-red">TRATAMIENTO</span></h2>
+      <p class="section-desc">Cada servicio está diseñado para proteger y realzar tu vehículo con los mejores productos del mercado.</p>
+    </div>
+
+    <div class="servicios-grid">
+      {servicios.map((s, i) => (
+        <div class={`servicio-card ${s.destacado ? "card-destacado" : ""}`}>
+          {s.destacado && <div class="card-popular">MÁS POPULAR</div>}
+          <div class="card-num">0{i + 1}</div>
+          <div class="card-body">
+            <h3 class="card-titulo">{s.nombre}</h3>
+            <div class="card-meta">
+              <span class="card-duracion">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                {s.duracion}
+              </span>
+            </div>
+            <p class="card-desc">{s.descripcion}</p>
+            <ul class="card-lista">
+              {s.items.map(item => (
+                <li>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="card-footer">
+            <div class="card-precio">
+              <span class="precio-desde">desde</span>
+              <span class="precio-val">{s.precio}</span>
+            </div>
+            <a href={`${TURNOS_URL}?servicio=${s.id}`} class="card-btn" target="_blank">
+              Reservar
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══ PRODUCTOS ════════════════════════════════════════════ -->
+<section id="productos" class="productos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">
+        <span class="tag-line"></span>
+        Tienda
+        <span class="tag-line"></span>
+      </div>
+      <h2 class="section-title">PRODUCTOS <span class="title-red">PREMIUM</span></h2>
+      <p class="section-desc">Los mismos productos que usamos en cada trabajo. Disponibles para que cuides tu auto en casa.</p>
+    </div>
+
+    <div class="productos-grid">
+      {productos.map(p => (
+        <div class="producto-card">
+          <div class="producto-img-wrap">
+            <img src={p.img} alt={p.nombre} class="producto-img" />
+          </div>
+          <div class="producto-info">
+            <h3 class="producto-nombre">{p.nombre}</h3>
+            <p class="producto-desc">{p.desc}</p>
+          </div>
+          <div class="producto-footer">
+            <span class="producto-badge">Toxic Shine®</span>
+            <a
+              href={`https://wa.me/${WA_NUM}?text=Hola%20Santos%20Detailing!%20Quiero%20consultar%20por%20${encodeURIComponent(p.nombre)}`}
+              target="_blank"
+              class="producto-cta"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+              </svg>
+              Consultar
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESO ═══════════════════════════════════════════════ -->
+<section id="proceso" class="proceso">
+  <div class="container">
+    <div class="proceso-inner">
+      <div class="proceso-text">
+        <div class="section-tag left">
+          <span class="tag-line"></span>
+          ¿Cómo funciona?
+        </div>
+        <h2 class="section-title">ASÍ DE <span class="title-red">SIMPLE</span></h2>
+        <p class="section-desc">Reservar tu turno es rápido y fácil. Sin llamadas, sin esperas.</p>
+      </div>
+
+      <div class="pasos">
+        <div class="paso">
+          <div class="paso-num">01</div>
+          <div class="paso-content">
+            <h3>Elegís el servicio</h3>
+            <p>Seleccionás el tratamiento que necesita tu auto según tu presupuesto y necesidades.</p>
+          </div>
+        </div>
+        <div class="paso-conector"></div>
+        <div class="paso">
+          <div class="paso-num">02</div>
+          <div class="paso-content">
+            <h3>Reservás el turno</h3>
+            <p>Elegís el día y horario que mejor te quede. Todo online, en segundos.</p>
+          </div>
+        </div>
+        <div class="paso-conector"></div>
+        <div class="paso">
+          <div class="paso-num">03</div>
+          <div class="paso-content">
+            <h3>Retirás impecable</h3>
+            <p>Llevás tu auto y nosotros hacemos el resto. Resultado garantizado.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERÍA ═══════════════════════════════════════════════ -->
+<section id="galeria" class="galeria">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">
+        <span class="tag-line"></span>
+        Nuestros trabajos
+        <span class="tag-line"></span>
+      </div>
+      <h2 class="section-title">RESULTADOS <span class="title-red">REALES</span></h2>
+    </div>
+
+    <div class="galeria-grid">
+      <div class="galeria-item">
+        <img src="/1.jpg" alt="Trabajo destacado" />
+      </div>
+      <div class="galeria-item">
+        <img src="/2.jpg" alt="Pulido de pintura" />
+      </div>
+      <div class="galeria-item">
+        <img src="/3.jpg" alt="Cerámica aplicada" />
+      </div>
+      <div class="galeria-item">
+        <img src="/4.jpg" alt="Detailing interior" />
+      </div>
+      <div class="galeria-item">
+        <img src="/5.jpg" alt="Antes / Después" />
+      </div>
+    </div>
+
+    <div class="galeria-cta">
+      <a href={IG_URL} target="_blank" rel="noopener noreferrer" class="ig-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        Ver más trabajos en Instagram
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA CENTRAL ═══════════════════════════════════════════ -->
+<section class="cta-band">
+  <div class="cta-band-bg"></div>
+  <div class="container cta-band-inner">
+    <div class="cta-band-text">
+      <h2 class="cta-band-title">¿TU AUTO NECESITA <span class="title-red">ATENCIÓN</span>?</h2>
+      <p>Reservá tu turno ahora y dale a tu vehículo el tratamiento que merece.</p>
+    </div>
+    <a href={TURNOS_URL} class="btn-primary btn-lg" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2"/>
+        <line x1="16" y1="2" x2="16" y2="6"/>
+        <line x1="8" y1="2" x2="8" y2="6"/>
+        <line x1="3" y1="10" x2="21" y2="10"/>
+      </svg>
+      Reservar turno online
+    </a>
+  </div>
+</section>
+
+<!-- ══ CONTACTO ══════════════════════════════════════════════ -->
+<section id="contacto" class="contacto">
+  <div class="container">
+    <div class="contacto-grid">
+      <div class="contacto-info">
+        <div class="section-tag left">
+          <span class="tag-line"></span>
+          Contacto
+        </div>
+        <h2 class="section-title">ENCONTRANOS<br/><span class="title-red">EN CATAMARCA</span></h2>
+        <div class="contacto-items">
+          <div class="contacto-item">
+            <div class="contacto-ico">📍</div>
+            <div>
+              <p class="ci-label">Ubicación</p>
+              <p class="ci-val">Catamarca, Argentina</p>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-ico">📱</div>
+            <div>
+              <p class="ci-label">WhatsApp</p>
+              <a href={`https://wa.me/${WA_NUM}`} class="ci-val ci-link">Escribinos</a>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-ico">📷</div>
+            <div>
+              <p class="ci-label">Instagram</p>
+              <a href={IG_URL} target="_blank" class="ci-val ci-link">@santos.detailing_cat</a>
+            </div>
+          </div>
+          <div class="contacto-item">
+            <div class="contacto-ico">🕐</div>
+            <div>
+              <p class="ci-label">Horario de atención</p>
+              <p class="ci-val">Lunes a Sábado · 9:00 — 20:00</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contacto-card">
+        <div class="cc-header">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <h3>¿Tenés dudas?</h3>
+        </div>
+        <p>Consultanos por WhatsApp y te respondemos en minutos. También podés reservar tu turno directamente online.</p>
+        <div class="cc-btns">
+          <a href={`https://wa.me/${WA_NUM}?text=Hola%20Santos%20Detailing!%20Quiero%20consultar%20sobre%20sus%20servicios.`} target="_blank" class="btn-wa">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.856L.054 23.285a.75.75 0 0 0 .921.921l5.43-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.693-.503-5.235-1.382l-.374-.217-3.876 1.054 1.054-3.876-.217-.374A9.953 9.953 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+            Consultar por WhatsApp
+          </a>
+          <a href={TURNOS_URL} class="btn-primary" target="_blank">Reservar turno</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════════ -->
+<footer>
+  <div class="container footer-inner">
+    <a href="/" class="nav-logo">
+      <div class="logo-icon">S</div>
+      <div class="logo-text">
+        <span class="logo-main">SANTOS</span>
+        <span class="logo-sub">DETAILING</span>
+      </div>
+    </a>
+    <p class="footer-copy">© 2026 Santos Detailing · Catamarca, Argentina</p>
+    <p class="footer-powered">
+      Turnos con <a href="https://devhub-turnos.vercel.app" target="_blank">DevHub Turnos</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) navbar?.classList.add("scrolled");
+    else navbar?.classList.remove("scrolled");
+  });
+
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  hamburger?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("open");
+    hamburger?.classList.toggle("active");
+  });
+  document.querySelectorAll(".mobile-link, .mobile-cta").forEach(link => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.remove("open");
+      hamburger?.classList.remove("active");
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".servicio-card, .paso, .stat-item, .galeria-item, .producto-card").forEach(el => {
+    el.classList.add("animate-on-scroll");
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:     #ef4444;
+    --red-dk:  #dc2626;
+    --black:   #080808;
+    --black-2: #0d0d0d;
+    --black-3: #131313;
+    --black-4: #1a1a1a;
+    --white:   #f5f5f0;
+    --white-2: #9a9a92;
+    --white-3: #555550;
+    --font-display:   'Bebas Neue', sans-serif;
+    --font-condensed: 'Barlow Condensed', sans-serif;
+    --font-body:      'Barlow', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black); color: var(--white);
+    font-family: var(--font-body); font-weight: 300;
+    line-height: 1.6; overflow-x: hidden;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    transition: background 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled {
+    background: rgba(8,8,8,0.95); backdrop-filter: blur(16px);
+    border-color: rgba(255,255,255,0.06);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    height: 68px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon {
+    width: 36px; height: 36px; background: var(--red); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1.25rem; color: #fff;
+  }
+  .logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .logo-main { font-family: var(--font-condensed); font-size: 1rem; font-weight: 800; letter-spacing: 0.1em; color: var(--white); }
+  .logo-sub  { font-family: var(--font-condensed); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.2em; color: var(--white-2); }
+  .nav-links { display: flex; align-items: center; gap: 1.75rem; }
+  .nav-links a {
+    font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--white-2); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    display: flex !important; align-items: center; gap: 6px;
+    background: var(--red) !important; color: #fff !important;
+    padding: 8px 18px !important; border-radius: 6px !important;
+    font-weight: 600 !important; transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--red-dk) !important; transform: translateY(-1px); }
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--white); border-radius: 2px; transition: all 0.3s;
+  }
+  .nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-hamburger.active span:nth-child(2) { opacity: 0; }
+  .nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .mobile-menu {
+    position: fixed; top: 68px; left: 0; right: 0; z-index: 99;
+    background: rgba(8,8,8,0.98); backdrop-filter: blur(20px);
+    padding: 1.5rem 2rem; display: flex; flex-direction: column; gap: 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transform: translateY(-100%); opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none;
+  }
+  .mobile-menu.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+  .mobile-link {
+    font-size: 1rem; font-weight: 500; color: var(--white-2); text-decoration: none;
+    padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s;
+  }
+  .mobile-link:hover { color: var(--white); }
+  .mobile-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--red); color: #fff; padding: 12px 24px;
+    border-radius: 8px; font-weight: 600; text-decoration: none; margin-top: 0.5rem;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    position: relative; overflow: hidden; padding: 8rem 2rem 4rem;
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: 0; }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+  }
+  .hero-glow {
+    position: absolute; top: 30%; right: 10%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(239,68,68,0.08) 0%, transparent 65%);
+    filter: blur(40px);
+  }
+  .hero-lines { position: absolute; right: 0; top: 0; bottom: 0; display: flex; gap: 60px; opacity: 0.04; }
+  .hero-lines .line { width: 1px; background: var(--white); }
+  .hero-content { position: relative; z-index: 1; max-width: 760px; width: 100%; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 1.75rem;
+    animation: fadeUp 0.7s ease both;
+  }
+  .eyebrow-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--red); animation: blink 2s ease infinite; }
+  .eyebrow-sep { color: var(--white-3); }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero-title {
+    display: flex; flex-direction: column;
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 14vw, 10rem);
+    line-height: 0.88; letter-spacing: 0.01em; margin-bottom: 1.5rem;
+  }
+  .title-line { animation: fadeUp 0.7s ease both; }
+  .title-line:nth-child(2) { animation-delay: 0.1s; }
+  .title-outline { -webkit-text-stroke: 2px var(--red); color: transparent; }
+  .hero-desc {
+    font-size: 1.0625rem; color: var(--white-2); line-height: 1.75;
+    max-width: 500px; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; animation: fadeUp 0.7s 0.3s ease both; }
+  .hero-badges { display: flex; gap: 1.5rem; flex-wrap: wrap; animation: fadeUp 0.7s 0.4s ease both; }
+  .badge { display: flex; align-items: center; gap: 6px; font-size: 0.8125rem; color: var(--white-2); }
+  .badge svg { color: var(--red); flex-shrink: 0; }
+  .hero-scroll-indicator {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; z-index: 1;
+  }
+  .scroll-bar {
+    width: 1px; height: 60px;
+    background: linear-gradient(to bottom, var(--red), transparent);
+    animation: scrollDrop 2s ease infinite;
+  }
+  @keyframes scrollDrop {
+    0%  { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform-origin: bottom; }
+    100%{ transform: scaleY(0); transform-origin: bottom; }
+  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ── BOTONES ── */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px; border-radius: 8px; background: var(--red); color: #fff;
+    font-size: 0.9375rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { background: var(--red-dk); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(239,68,68,0.3); }
+  .btn-primary.btn-lg { padding: 16px 40px; font-size: 1rem; }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 28px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+    color: var(--white-2); font-size: 0.9375rem; font-weight: 500; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+  .btn-wa {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 24px; border-radius: 8px; background: #16a34a; color: #fff;
+    font-size: 0.9375rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-wa:hover { background: #15803d; transform: translateY(-1px); }
+
+  /* ── STATS ── */
+  .stats {
+    padding: 3rem 0; background: var(--black-3);
+    border-top: 1px solid rgba(239,68,68,0.2); border-bottom: 1px solid rgba(239,68,68,0.2);
+  }
+  .stats-grid { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; }
+  .stat-item { padding: 1rem 3rem; text-align: center; }
+  .stat-num { display: block; font-family: var(--font-display); font-size: 2.5rem; color: var(--white); }
+  .stat-plus, .stat-star, .stat-pct { color: var(--red); }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-3); }
+  .stat-divider { width: 1px; height: 48px; background: rgba(255,255,255,0.08); }
+
+  /* ── SECTION HELPERS ── */
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-tag {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 1rem;
+  }
+  .section-tag.left { justify-content: flex-start; }
+  .tag-line { display: block; width: 32px; height: 1px; background: var(--red); }
+  .section-title {
+    font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 0.95; color: var(--white); margin-bottom: 1rem;
+  }
+  .title-red { color: var(--red); }
+  .section-desc { font-size: 1rem; color: var(--white-2); line-height: 1.7; max-width: 560px; margin: 0 auto; }
+
+  /* ── SERVICIOS ── */
+  .servicios { padding: 8rem 0; background: var(--black-2); }
+  .servicios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .servicio-card {
+    background: var(--black-3); border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px; padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem;
+    position: relative; overflow: hidden; transition: border-color 0.25s, transform 0.25s;
+  }
+  .servicio-card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+  }
+  .servicio-card:hover { border-color: rgba(239,68,68,0.3); transform: translateY(-4px); }
+  .servicio-card:hover::before { transform: scaleX(1); }
+  .card-destacado { border-color: rgba(239,68,68,0.3); background: linear-gradient(145deg, #160808 0%, var(--black-3) 60%); }
+  .card-destacado::before { transform: scaleX(1); }
+  .card-popular {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    background: var(--red); color: #fff;
+    font-size: 0.5625rem; font-weight: 800; letter-spacing: 0.15em; padding: 4px 10px; border-radius: 99px;
+  }
+  .card-num { font-family: var(--font-display); font-size: 3rem; color: rgba(239,68,68,0.15); line-height: 1; }
+  .card-body { flex: 1; display: flex; flex-direction: column; gap: 0.75rem; }
+  .card-titulo { font-family: var(--font-display); font-size: 1.875rem; color: var(--white); }
+  .card-duracion { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--white-3); }
+  .card-desc { font-size: 0.875rem; color: var(--white-2); line-height: 1.6; }
+  .card-lista { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .card-lista li { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: var(--white-2); }
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .precio-desde { display: block; font-size: 0.625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-3); }
+  .precio-val { font-family: var(--font-display); font-size: 2rem; color: var(--white); }
+  .card-btn {
+    display: flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: 8px;
+    background: var(--red); color: #fff; font-size: 0.875rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .card-btn:hover { background: var(--red-dk); transform: translateY(-1px); }
+
+  /* ── PRODUCTOS ── */
+  .productos { padding: 8rem 0; }
+  .productos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+
+  .producto-card {
+    background: var(--black-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .producto-card:hover {
+    border-color: rgba(239,68,68,0.25);
+    transform: translateY(-4px);
+  }
+
+  .producto-img-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #111;
+  }
+  .producto-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .producto-card:hover .producto-img { transform: scale(1.05); }
+
+  .producto-info {
+    padding: 1rem 1.25rem 0.5rem;
+    flex: 1;
+  }
+  .producto-nombre {
+    font-family: var(--font-condensed);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    margin-bottom: 5px;
+  }
+  .producto-desc { font-size: 0.8125rem; color: var(--white-2); line-height: 1.5; }
+
+  .producto-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1.25rem 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 0.75rem;
+  }
+  .producto-badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    border: 1px solid rgba(239,68,68,0.3);
+    padding: 3px 8px;
+    border-radius: 99px;
+  }
+  .producto-cta {
+    display: flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 8px;
+    background: #16a34a; color: #fff; font-size: 0.8125rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .producto-cta:hover { background: #15803d; transform: translateY(-1px); }
+
+  /* ── PROCESO ── */
+  .proceso { padding: 8rem 0; background: var(--black-2); }
+  .proceso-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+  .pasos { display: flex; flex-direction: column; }
+  .paso { display: flex; gap: 1.5rem; align-items: flex-start; }
+  .paso-num { font-family: var(--font-display); font-size: 3rem; color: rgba(239,68,68,0.2); line-height: 1; flex-shrink: 0; transition: color 0.3s; }
+  .paso:hover .paso-num { color: var(--red); }
+  .paso-content h3 { font-family: var(--font-condensed); font-size: 1.125rem; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .paso-content p { font-size: 0.875rem; color: var(--white-2); line-height: 1.6; }
+  .paso-conector { width: 1px; height: 40px; background: rgba(239,68,68,0.2); margin: 0.5rem 0 0.5rem 1.5rem; }
+
+  /* ── GALERÍA ── */
+  .galeria { padding: 8rem 0; }
+
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 12px;
+  }
+
+  .galeria-item:nth-child(1) { grid-column: 1; grid-row: 1 / 3; }
+  .galeria-item:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .galeria-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .galeria-item:nth-child(4) { grid-column: 3; grid-row: 1; }
+  .galeria-item:nth-child(5) { grid-column: 3; grid-row: 2; }
+
+  .galeria-item {
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--black-3);
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .galeria-item:hover {
+    border-color: rgba(239,68,68,0.4);
+    transform: scale(1.02);
+    z-index: 1;
+  }
+  .galeria-item img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .galeria-item:hover img { transform: scale(1.06); }
+
+  .galeria-cta { margin-top: 2.5rem; text-align: center; }
+  .ig-btn {
+    display: inline-flex; align-items: center; gap: 10px; font-size: 0.9375rem;
+    font-weight: 500; color: var(--white-2); text-decoration: none; padding: 12px 24px;
+    border: 1px solid rgba(255,255,255,0.12); border-radius: 99px;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .ig-btn:hover { border-color: var(--red); color: var(--white); background: rgba(239,68,68,0.05); }
+
+  /* ── CTA BAND ── */
+  .cta-band { padding: 6rem 0; position: relative; overflow: hidden; }
+  .cta-band-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(239,68,68,0.08) 0%, transparent 60%);
+    border-top: 1px solid rgba(239,68,68,0.15); border-bottom: 1px solid rgba(239,68,68,0.15);
+  }
+  .cta-band-inner {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+  }
+  .cta-band-title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 3rem); color: var(--white); margin-bottom: 0.5rem; }
+  .cta-band-text p { font-size: 1rem; color: var(--white-2); }
+
+  /* ── CONTACTO ── */
+  .contacto { padding: 8rem 0; background: var(--black-2); }
+  .contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contacto-items { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .contacto-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .contacto-ico { font-size: 1.25rem; flex-shrink: 0; margin-top: 2px; }
+  .ci-label { font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-3); margin-bottom: 3px; }
+  .ci-val { font-size: 0.9375rem; color: var(--white-2); }
+  .ci-link { text-decoration: none; color: var(--white-2); transition: color 0.2s; }
+  .ci-link:hover { color: var(--red); }
+  .contacto-card {
+    background: var(--black-3); border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 16px; padding: 2.5rem; display: flex; flex-direction: column; gap: 1.25rem;
+  }
+  .cc-header { display: flex; align-items: center; gap: 10px; }
+  .cc-header h3 { font-family: var(--font-condensed); font-size: 1.25rem; font-weight: 700; color: var(--white); }
+  .contacto-card p { font-size: 0.9375rem; color: var(--white-2); line-height: 1.7; }
+  .cc-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer { padding: 2rem 0; border-top: 1px solid rgba(255,255,255,0.06); }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-copy { font-size: 0.8125rem; color: var(--white-3); }
+  .footer-powered { font-size: 0.75rem; color: var(--white-3); }
+  .footer-powered a { color: var(--red); text-decoration: none; }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .animate-on-scroll { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .servicios-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+    .productos-grid { grid-template-columns: repeat(2, 1fr); }
+    .proceso-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .cta-band-inner { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .stat-item { padding: 1rem 1.5rem; }
+    .stat-divider { display: none; }
+    .galeria-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 200px 200px 200px;
+    }
+    .galeria-item:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+    .galeria-item:nth-child(2) { grid-column: 1; grid-row: 2; }
+    .galeria-item:nth-child(3) { grid-column: 2; grid-row: 2; }
+    .galeria-item:nth-child(4) { grid-column: 1; grid-row: 3; }
+    .galeria-item:nth-child(5) { grid-column: 2; grid-row: 3; }
+  }
+  @media (max-width: 480px) {
+    .productos-grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .hero-badges { flex-direction: column; gap: 0.75rem; }
+    .cc-btns { flex-direction: column; }
+    .galeria-grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(5, 220px);
+    }
+    .galeria-item:nth-child(1),
+    .galeria-item:nth-child(2),
+    .galeria-item:nth-child(3),
+    .galeria-item:nth-child(4),
+    .galeria-item:nth-child(5) {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+</style>
